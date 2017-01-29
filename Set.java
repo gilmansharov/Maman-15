@@ -93,18 +93,33 @@ public class Set
 		return count;
 	}
 	
-	public boolean subSet(Set other) //Time Complexity: O(n^2), Memory Complexity: O(1)
+	public boolean subSet(Set other) //Time Complexity: O(n), Memory Complexity: O(1)
 	{
-		if (this.numOfElements() <= other.numOfElements())
+		if(other._head == null)
+			return true;
+		if (this.numOfElements() < other.numOfElements())
 			return false;
-		IntNode p = other._head;
-		while (p != null)
+		IntNode p1 = this._head;
+		IntNode p2 = other._head;
+		boolean flag = false;
+		while (p1 != null && p2 != null)
 		{
-			if (!isMember(p.getValue()))
+			if (p1.getValue() > p2.getValue())
 				return false;
-			p = p.getNext();
+			if (p1.getValue() == p2.getValue())
+			{
+				flag = true;
+				p1 = p1.getNext();
+				p2 = p2.getNext();
+			}
+			else
+			{
+				if (flag)
+					return false;
+				p1 = p1.getNext();
+			}
 		}
-		return true;
+		return flag;
 	}
 	
 	public void addToSet(int x) //Time Complexity: O(n), Memory Complexity: O(1)
