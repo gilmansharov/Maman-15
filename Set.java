@@ -371,6 +371,20 @@ public class Set
 					}
 				}
 			}
+			while (pThis != null)
+			{
+				if (difference._head == null)
+				{
+					difference._head = new IntNode(pThis.getValue(), null);
+					pDiff = difference._head;
+				}
+				else
+				{
+					pDiff.setNext(new IntNode(pThis.getValue(), null));
+					pDiff = pDiff.getNext();
+				}
+				pThis = pThis.getNext();
+			}
 			return difference;
 		}
 	}
