@@ -87,7 +87,7 @@ public class Set
         {
             if (other == null)
                 return false;
-            if(other._head == null)
+            if(other.isEmpty())
                 return true;
             if (this.numOfElements() < other.numOfElements())
                 return false;
@@ -102,7 +102,7 @@ public class Set
                 {
                     flag = true;
                     p1 = p1.getNext();
-               p2 = p2.getNext();
+                    p2 = p2.getNext();
                 }
                 else
                 {
@@ -122,7 +122,7 @@ public class Set
         {
             if (x % 2 == 1 && x > 0)
             {
-                if (_head == null)
+                if (this.isEmpty())
                 {
                     _head = new IntNode(x, null);
                     _length++;
@@ -222,7 +222,7 @@ public class Set
             {
                 if (pThis.getValue() == pOther.getValue())
                 {
-                    if (pInter == null)
+                    if (intersection.isEmpty())
                     {
                         intersection._head = new IntNode(pThis.getValue(), null);
                         pInter = intersection._head;
@@ -265,7 +265,7 @@ public class Set
             {
                 if (pThis.getValue() == pOther.getValue())
                 {
-                    if (union._head == null)
+                    if (union.isEmpty())
                     {
                         union._head = new IntNode(pThis.getValue(), null);
                         pUnion = union._head;
@@ -282,7 +282,7 @@ public class Set
                 {
                     if (pThis.getValue() > pOther.getValue())
                     {
-                        if (union._head == null)
+                        if (union.isEmpty())
                         {
                             union._head = new IntNode(pOther.getValue(), null);
                             pUnion = union._head;
@@ -296,7 +296,7 @@ public class Set
                     }
                     else
                     {
-                        if (union._head == null)
+                        if (union.isEmpty())
                         {
                             union._head = new IntNode(pThis.getValue(), null);
                             pUnion = union._head;
@@ -314,7 +314,7 @@ public class Set
             
             while (pThis != null)
             {
-                if (union._head == null)
+                if (union.isEmpty())
                 {
                     union._head = new IntNode(pThis.getValue(), null);
                     pUnion = union._head;
@@ -330,7 +330,7 @@ public class Set
             
             while (pOther != null)
             {
-                if (union._head == null)
+                if (union.isEmpty())
                 {
                     union._head = new IntNode(pOther.getValue(), null);
                     pUnion = union._head;
@@ -373,7 +373,7 @@ public class Set
                         pOther = pOther.getNext();
                     else
                     {
-                        if (difference._head == null)
+                        if (difference.isEmpty())
                         {
                             difference._head = new IntNode(pThis.getValue(), null);
                             pDiff = difference._head;
@@ -390,7 +390,7 @@ public class Set
             }
             while (pThis != null)
             {
-                if (difference._head == null)
+                if (difference.isEmpty())
                 {
                     difference._head = new IntNode(pThis.getValue(), null);
                     pDiff = difference._head;
