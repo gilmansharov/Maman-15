@@ -150,8 +150,10 @@ public class Maman15Tester
         res.addToSet(9);
         assertEquals(null, set1.union(null));
         assertTrue(res.equals(set2.union(set1)));
+        assertEquals(6, set2.union(set1).numOfElements());
         set2.addToSet(1);
         assertTrue(res.equals(set2.union(set1)));
+        assertEquals(6, set2.union(set1).numOfElements());
     }
  
     @Test
@@ -160,6 +162,9 @@ public class Maman15Tester
         Set set1 = new Set();
         Set set2 = new Set();
         Set res = new Set();
+        Set inter = set1.intersection(set2);
+        assertEquals(true, res.equals(inter));
+        assertEquals(0, inter.numOfElements());
         set1.addToSet(1);
         set1.addToSet(3);
         set1.addToSet(5);
@@ -172,13 +177,15 @@ public class Maman15Tester
         res.addToSet(5);
         res.addToSet(101);
         assertEquals(null, set1.intersection(null));
-        Set inter = set1.intersection(set2);
+        inter = set1.intersection(set2);
         assertEquals(true, res.equals(inter));
+        assertEquals(2, inter.numOfElements());
         set1.addToSet(7);
         set2.addToSet(7);
         res.addToSet(7);
         inter = set2.intersection(set1);
         assertEquals(true, res.equals(inter));
+        assertEquals(3, inter.numOfElements());
     }
  
     @Test
@@ -202,9 +209,11 @@ public class Maman15Tester
         res.addToSet(1);
         assertEquals(null, set1.difference(null));
         assertTrue(res.equals(set1.difference(set2)));
+        assertEquals(4, set1.difference(set2).numOfElements());
         Set res2 = new Set();
         res2.addToSet(37);
         assertTrue(res2.equals(set2.difference(set1)));
+        assertEquals(1, set2.difference(set1).numOfElements());
     }
  
     @Test

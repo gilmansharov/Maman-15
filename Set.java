@@ -1,4 +1,4 @@
-    /**
+/**
      * @author Gil Mansharov
      * @ID 313260192
      * This class represents the group of all the odd positive numbers
@@ -206,6 +206,39 @@ public class Set
         }
         
         /**
+         * This private method is For the methods: intersection, difference and union.
+         * This method adds a new Node to a non-empty Set, with a number that has been given as a parameter.
+         * @param p An IntNode object to add a new node after it.
+         * @param x The number you want to add to the Set.
+         * @return The Node of the number that has been added to the set.
+         */
+        private IntNode addToInterUnionDiff(IntNode p, int x)
+        {
+            if (p != null)
+            {
+                p.setNext(new IntNode(x, null));
+                return p.getNext();
+            }
+            return null;
+        }
+        
+        /**
+         * This private method is For the methods: intersection, difference and union.
+         * This method adds a new Node to the Set object it's Sent from, the Set object has to be an empty Set, with a number that has been given as a parameter.
+         * @param x The number you want to add to the set.
+         * @return The first Node of the Set.
+         */
+        private IntNode addToInterUnionDiff(int x)
+        {
+            if (this.isEmpty())
+            {
+                this._head = new IntNode(x, null);
+            }
+            return this._head;
+
+        }
+        
+        /**
          * Gets the intersection of a given Set object with the current Set object
          * @param other The set to get intersection with
          * @return a new Set object which represents the intersection between the Sets
@@ -223,15 +256,9 @@ public class Set
                 if (pThis.getValue() == pOther.getValue())
                 {
                     if (intersection.isEmpty())
-                    {
-                        intersection._head = new IntNode(pThis.getValue(), null);
-                        pInter = intersection._head;
-                    }
+                        pInter = intersection.addToInterUnionDiff(pThis.getValue());
                     else
-                    {
-                        pInter.setNext(new IntNode(pThis.getValue(), null));
-                        pInter = pInter.getNext();
-                    }
+                        pInter = intersection.addToInterUnionDiff(pInter, pThis.getValue());
                     intersection._length++;
                     pThis = pThis.getNext();
                     pOther = pOther.getNext();
@@ -266,14 +293,10 @@ public class Set
                 if (pThis.getValue() == pOther.getValue())
                 {
                     if (union.isEmpty())
-                    {
-                        union._head = new IntNode(pThis.getValue(), null);
-                        pUnion = union._head;
-                    }
+                        pUnion = union.addToInterUnionDiff(pThis.getValue());
                     else
                     {
-                        pUnion.setNext(new IntNode(pThis.getValue(), null));
-                        pUnion = pUnion.getNext();
+                        pUnion = union.addToInterUnionDiff(pUnion, pThis.getValue());
                     }
                     pThis = pThis.getNext();
                     pOther = pOther.getNext();
@@ -283,29 +306,17 @@ public class Set
                     if (pThis.getValue() > pOther.getValue())
                     {
                         if (union.isEmpty())
-                        {
-                            union._head = new IntNode(pOther.getValue(), null);
-                            pUnion = union._head;
-                        }
+                            pUnion = union.addToInterUnionDiff(pOther.getValue());
                         else
-                        {
-                            pUnion.setNext(new IntNode(pOther.getValue(), null));
-                            pUnion = pUnion.getNext();
-                        }
+                            pUnion = union.addToInterUnionDiff(pUnion, pOther.getValue());
                         pOther = pOther.getNext();
                     }
                     else
                     {
                         if (union.isEmpty())
-                        {
-                            union._head = new IntNode(pThis.getValue(), null);
-                            pUnion = union._head;
-                        }
+                            pUnion = union.addToInterUnionDiff(pThis.getValue());
                         else
-                        {
-                            pUnion.setNext(new IntNode(pThis.getValue(), null));
-                            pUnion = pUnion.getNext();
-                        }
+                            pUnion = union.addToInterUnionDiff(pUnion, pThis.getValue());
                         pThis = pThis.getNext();
                     }
                 }
@@ -315,15 +326,9 @@ public class Set
             while (pThis != null)
             {
                 if (union.isEmpty())
-                {
-                    union._head = new IntNode(pThis.getValue(), null);
-                    pUnion = union._head;
-                }
+                    pUnion = union.addToInterUnionDiff(pThis.getValue());
                 else
-                {
-                    pUnion.setNext(new IntNode(pThis.getValue(), null));
-                    pUnion = pUnion.getNext();
-                }
+                    pUnion = union.addToInterUnionDiff(pUnion, pThis.getValue());
                 pThis = pThis.getNext();
                 union._length++;
             }
@@ -331,15 +336,9 @@ public class Set
             while (pOther != null)
             {
                 if (union.isEmpty())
-                {
-                    union._head = new IntNode(pOther.getValue(), null);
-                    pUnion = union._head;
-                }
+                    pUnion = union.addToInterUnionDiff(pOther.getValue());
                 else
-                {
-                    pUnion.setNext(new IntNode(pOther.getValue(), null));
-                    pUnion = pUnion.getNext();
-                }
+                    pUnion = union.addToInterUnionDiff(pUnion, pOther.getValue());
                 pOther = pOther.getNext();
                 union._length++;
             }
@@ -374,15 +373,9 @@ public class Set
                     else
                     {
                         if (difference.isEmpty())
-                        {
-                            difference._head = new IntNode(pThis.getValue(), null);
-                            pDiff = difference._head;
-                        }
+                            pDiff = difference.addToInterUnionDiff(pThis.getValue());
                         else
-                        {
-                            pDiff.setNext(new IntNode(pThis.getValue(), null));
-                            pDiff = pDiff.getNext();
-                        }
+                            pDiff = difference.addToInterUnionDiff(pDiff, pThis.getValue());
                         pThis = pThis.getNext();
                         difference._length++;
                     }
@@ -391,15 +384,9 @@ public class Set
             while (pThis != null)
             {
                 if (difference.isEmpty())
-                {
-                    difference._head = new IntNode(pThis.getValue(), null);
-                    pDiff = difference._head;
-                }
+                    pDiff = difference.addToInterUnionDiff(pThis.getValue());
                 else
-                {
-                    pDiff.setNext(new IntNode(pThis.getValue(), null));
-                    pDiff = pDiff.getNext();
-                }
+                    pDiff = difference.addToInterUnionDiff(pDiff, pThis.getValue());
                 pThis = pThis.getNext();
             }
             return difference;
