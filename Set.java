@@ -100,18 +100,15 @@ public class Set
                     return false;
                 if (p1.getValue() == p2.getValue())
                 {
-                    flag = true;
                     p1 = p1.getNext();
                     p2 = p2.getNext();
                 }
                 else
                 {
-                    if (flag)
-                        return false;
                     p1 = p1.getNext();
                 }
             }
-            return flag;
+            return p2 == null;
         }
         
         /**
