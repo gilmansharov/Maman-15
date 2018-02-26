@@ -1,6 +1,5 @@
 /**
 	 * @author Gil Mansharov
-	 * @ID 313260192
 	 * This class represents a node in a linked list
 	 */
 public class IntNode 
