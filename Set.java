@@ -1,6 +1,5 @@
 /**
      * @author Gil Mansharov
-     * @ID 313260192
      * This class represents the group of all the odd positive numbers
      */
 
